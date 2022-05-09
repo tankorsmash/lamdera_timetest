@@ -1,5 +1,6 @@
 module Types exposing (..)
 
+import Time
 import Browser exposing (UrlRequest)
 import Browser.Navigation exposing (Key)
 import Url exposing (Url)
@@ -28,6 +29,7 @@ type ToBackend
 
 type BackendMsg
     = NoOpBackendMsg
+    | TickTime Time.Posix
 
 
 type ToFrontend
