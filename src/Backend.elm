@@ -35,11 +35,14 @@ update msg model =
             ( model, Cmd.none )
         TickTime _ ->
             Debug.log "ticking" <|
-                ( model 
+                ( model
                 -- shouldn't this be happening every second?
-                , Process.sleep 1000
-                    |> Task.andThen (\_ -> Time.now)
-                    |> Task.perform (TickTime)
+                , Cmd.batch
+                    [ Process.sleep 1000
+                        |> Task.andThen (\_ -> Time.now)
+                        |> Task.perform (TickTime)
+                    , Lamdera.broadcast NoOpToFrontend
+                    ]
                 )
 
 
