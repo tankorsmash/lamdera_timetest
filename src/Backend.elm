@@ -24,7 +24,7 @@ app =
 init : ( Model, Cmd BackendMsg )
 init =
     ( { message = "Hello!" }
-    , Task.perform TickTime Time.now
+    , Debug.log "INIT COMMAND SENT" <| Task.perform TickTime Time.now
     )
 
 
